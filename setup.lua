@@ -4,18 +4,21 @@ local nvim = home .. "/.config/nvim"
 
 local function mkdir()
     os.execute("mkdir " .. nvim)
+    os.execute("mkdir " .. nvim .. "/after")
+    os.execute("mkdir " .. nvim .. "/lua")
+    os.execute("mkdir " .. nvim .. "/plugin")
 end
 
 local function copy()
-    os.execute("cp -rv after/* " .. nvim)
-    os.execute("cp -rv lua/* " .. nvim)
-    os.execute("cp -rv plugin/* " .. nvim)
+    os.execute("cp -rv after/* " .. nvim .. "/after")
+    os.execute("cp -rv lua/* " .. nvim .. "/lua")
+    os.execute("cp -rv plugin/* " .. nvim .. "/plugin")
     os.execute("cp -v init.lua " .. nvim)
 end
 local function fullsetup()
     mkdir()
     copy()
-    os.execute("git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+    os.execute("cd && git clone --depth 1 https://github.com/wbthomason/packer.nvim\
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim")
 end
 
